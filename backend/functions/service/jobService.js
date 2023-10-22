@@ -1,4 +1,4 @@
-import db from "../firebase.js";
+import db from "../firestore.js";
 import Job from "../model/jobModel.js";
 
 export const getJobs = async (req, res, next) => {
