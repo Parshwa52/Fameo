@@ -122,7 +122,7 @@ export const applyJob = async (req, res, next) => {
       .doc(applicationId.toString());
 
     const application = await new Application(
-      applicationData.applicationId,
+      applicationId.toString(),
       applicationData.candidateEmail,
       applicationData.companyEmail,
       applicationData.jobId,
