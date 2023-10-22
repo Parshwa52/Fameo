@@ -12,7 +12,9 @@ class Job {
     jobPrivacyPolicy,
     companyName,
     companyTagLine,
-    companyDescription
+    companyDescription,
+    companyLogo,
+    companyWebsite
   ) {
     (this.jobId = jobId),
       (this.jobTitle = jobTitle),
@@ -26,7 +28,9 @@ class Job {
       (this.jobPrivacyPolicy = jobPrivacyPolicy),
       (this.companyName = companyName),
       (this.companyTagLine = companyTagLine),
-      (this.companyDescription = companyDescription);
+      (this.companyDescription = companyDescription),
+      (this.companyLogo = companyLogo),
+      (this.companyWebsite = companyWebsite);
   }
 }
 
