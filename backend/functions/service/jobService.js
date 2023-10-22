@@ -138,9 +138,10 @@ export const applyJob = async (req, res, next) => {
 
 export const myAppliedJobs = async (req, res, next) => {
   try {
+    var email = await req.body.email.toString();
     const myAppliedJobsData = await db
       .collection("Applications")
-      .where("candidateEmail", "=", req.body.email.toString())
+      .where("candidateEmail", "=", email)
       .get();
 
     const applicationArray = [];
@@ -154,7 +155,7 @@ export const myAppliedJobs = async (req, res, next) => {
       );
       applicationArray.push(application);
     });
-    await res.status(200).send(applicationArray);
+    res.status(200).send(applicationArray);
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -162,9 +163,10 @@ export const myAppliedJobs = async (req, res, next) => {
 
 export const myPostedJobs = async (req, res, next) => {
   try {
+    var email = await req.body.email.toString();
     const myPostedJobsData = await db
       .collection("Applications")
-      .where("companyEmail", "=", req.body.email.toString())
+      .where("companyEmail", "=", email)
       .get();
 
     const applicationArray = [];
@@ -178,7 +180,95 @@ export const myPostedJobs = async (req, res, next) => {
       );
       applicationArray.push(application);
     });
-    await res.status(200).send(applicationArray);
+    res.status(200).send(applicationArray);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+export const getJob = async (req, res, next) => {
+  try {
+    var jobId = await req.body.jobId.toString();
+    const jobData = await db
+      .collection("Jobs")
+      .where("jobId", "=", jobId)
+      .get();
+
+    const jobArray = [];
+    jobData.forEach((doc) => {
+      const job = new Job(
+        doc.data().jobId,
+        doc.data().jobTitle,
+        doc.data().jobType,
+        doc.data().jobRole,
+        doc.data().jobResponsibilities,
+        doc.data().jobRequirements,
+        doc.data().jobBenefits,
+        doc.data().jobSalary,
+        doc.data().jobLocation,
+        doc.data().jobPrivacyPolicy,
+        doc.data().companyName,
+        doc.data().companyTagLine,
+        doc.data().companyDescription,
+        doc.data().companyLogo,
+        doc.data().companyWebsite
+      );
+      jobArray.push(job);
+    });
+    res.status(200).send(jobArray);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+export const getCandidate = async (req, res, next) => {
+  try {
+    var candidateEmail = await req.body.candidateEmail.toString();
+    const candidateData = await db
+      .collection("Candidates")
+      .where("email", "=", candidateEmail)
+      .get();
+
+    const candidateArray = [];
+    candidateData.forEach((doc) => {
+      const candidate = new Candidate(
+        doc.data().jobId,
+        doc.data().email,
+        doc.data().firstName,
+        doc.data().lastName,
+        doc.data().linkedinLink,
+        doc.data().resume,
+        doc.data().type
+      );
+      candidateArray.push(candidate);
+    });
+    res.status(200).send(candidateArray);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+export const getCompany = async (req, res, next) => {
+  try {
+    var companyEmail = await req.body.companyEmail.toString();
+    const companyData = await db
+      .collection("Companies")
+      .where("email", "=", companyEmail)
+      .get();
+    const companyArray = [];
+    companyData.forEach((doc) => {
+      const company = new Company(
+        doc.data().email,
+        doc.data().name,
+        doc.data().tagLine,
+        doc.data().description,
+        doc.data().logo,
+        doc.data().website,
+        doc.data().type
+      );
+      companyArray.push(company);
+    });
+    res.status(200).send(companyArray);
   } catch (error) {
     res.status(400).send(error.message);
   }

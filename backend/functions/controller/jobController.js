@@ -7,6 +7,9 @@ import {
   registerCompany,
   myAppliedJobs,
   myPostedJobs,
+  getJob,
+  getCandidate,
+  getCompany,
 } from "../service/jobService.js";
 
 const router = express.Router();
@@ -19,8 +22,14 @@ router.post("/registerCandidate", registerCandidate);
 
 router.post("/registerCompany", registerCompany);
 
-router.get("/myAppliedJobs", myAppliedJobs);
+router.post("/myAppliedJobs", myAppliedJobs);
 
-router.get("/myPostedJobs", myPostedJobs);
+router.post("/myPostedJobs", myPostedJobs);
+
+router.post("/getJob", getJob);
+
+router.post("/getCandidate", getCandidate);
+
+router.post("/getCompany", getCompany);
 
 export default router;
