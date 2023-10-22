@@ -10,6 +10,7 @@ import {
   getJob,
   getCandidate,
   getCompany,
+  applyJob,
 } from "../service/jobService.js";
 
 const router = express.Router();
@@ -17,6 +18,8 @@ const router = express.Router();
 router.get("/jobs", getJobs);
 
 router.post("/postJob", postJob);
+
+router.post("/applyJob", applyJob);
 
 router.post("/registerCandidate", registerCandidate);
 
