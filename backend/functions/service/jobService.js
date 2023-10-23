@@ -138,6 +138,19 @@ export const applyJob = async (req, res, next) => {
   }
 };
 
+export const revertCandidate = async (req, res, next) => {
+  try {
+    var applicationId = await req.body.applicationId;
+    var result = await req.body.result;
+    await db.collection("Applications").doc(applicationId.toString()).update({
+      status: result.toString(),
+    });
+    await res.status(200).send("Application result submitted Successfully");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 export const myAppliedJobs = async (req, res, next) => {
   try {
     var email = await req.body.email.toString();
@@ -163,16 +176,16 @@ export const myAppliedJobs = async (req, res, next) => {
   }
 };
 
-export const myPostedJobs = async (req, res, next) => {
+export const getJobApplicants = async (req, res, next) => {
   try {
-    var email = await req.body.email.toString();
-    const myPostedJobsData = await db
+    var jobId = await req.body.jobId.toString();
+    const jobApplicantsData = await db
       .collection("Applications")
-      .where("companyEmail", "=", email)
+      .where("jobId", "=", jobId)
       .get();
 
     const applicationArray = [];
-    myPostedJobsData.forEach((doc) => {
+    jobApplicantsData.forEach((doc) => {
       const application = new Application(
         doc.data().applicationId,
         doc.data().candidateEmail,
@@ -183,6 +196,42 @@ export const myPostedJobs = async (req, res, next) => {
       applicationArray.push(application);
     });
     res.status(200).send(applicationArray);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+export const myPostedJobs = async (req, res, next) => {
+  try {
+    var email = await req.body.email.toString();
+    const myPostedJobsData = await db
+      .collection("Jobs")
+      .where("companyEmail", "=", email)
+      .get();
+
+    const jobArray = [];
+    myPostedJobsData.forEach((doc) => {
+      const job = new Job(
+        doc.data().jobId,
+        doc.data().jobTitle,
+        doc.data().jobType,
+        doc.data().jobRole,
+        doc.data().jobResponsibilities,
+        doc.data().jobRequirements,
+        doc.data().jobBenefits,
+        doc.data().jobSalary,
+        doc.data().jobLocation,
+        doc.data().jobPrivacyPolicy,
+        doc.data().companyName,
+        doc.data().companyTagLine,
+        doc.data().companyDescription,
+        doc.data().companyLogo,
+        doc.data().companyWebsite,
+        doc.data().companyEmail
+      );
+      jobArray.push(job);
+    });
+    res.status(200).send(jobArray);
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -235,7 +284,6 @@ export const getCandidate = async (req, res, next) => {
     const candidateArray = [];
     candidateData.forEach((doc) => {
       const candidate = new Candidate(
-        doc.data().jobId,
         doc.data().email,
         doc.data().firstName,
         doc.data().lastName,
