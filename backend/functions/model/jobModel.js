@@ -14,7 +14,8 @@ class Job {
     companyTagLine,
     companyDescription,
     companyLogo,
-    companyWebsite
+    companyWebsite,
+    companyEmail
   ) {
     (this.jobId = jobId),
       (this.jobTitle = jobTitle),
@@ -30,7 +31,8 @@ class Job {
       (this.companyTagLine = companyTagLine),
       (this.companyDescription = companyDescription),
       (this.companyLogo = companyLogo),
-      (this.companyWebsite = companyWebsite);
+      (this.companyWebsite = companyWebsite),
+      (this.companyEmail = companyEmail);
   }
 }
 

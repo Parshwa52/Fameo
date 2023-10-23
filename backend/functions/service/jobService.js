@@ -25,7 +25,8 @@ export const getJobs = async (req, res, next) => {
         doc.data().companyTagLine,
         doc.data().companyDescription,
         doc.data().companyLogo,
-        doc.data().companyWebsite
+        doc.data().companyWebsite,
+        doc.data().companyEmail
       );
       jobArray.push(job);
     });
@@ -55,7 +56,8 @@ export const postJob = async (req, res, next) => {
       jobData.companyTagLine,
       jobData.companyDescription,
       jobData.companyLogo,
-      jobData.companyWebsite
+      jobData.companyWebsite,
+      jobData.companyEmail
     );
 
     await jobDoc.set(Object.assign({}, job));
@@ -211,7 +213,8 @@ export const getJob = async (req, res, next) => {
         doc.data().companyTagLine,
         doc.data().companyDescription,
         doc.data().companyLogo,
-        doc.data().companyWebsite
+        doc.data().companyWebsite,
+        doc.data().companyEmail
       );
       jobArray.push(job);
     });
