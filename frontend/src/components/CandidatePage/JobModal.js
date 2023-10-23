@@ -41,6 +41,7 @@ export default function JobModal({ open, job, handleClose, email }) {
         setUploadingProgress(false);
         alert("Congrats! Your have applied in 1 click");
         handleClose();
+        window.location.reload(true);
       });
   };
 
@@ -63,7 +64,12 @@ export default function JobModal({ open, job, handleClose, email }) {
               <div align="center">
                 <h3>{job.companyName}</h3>
                 <br />
-                <img src={job.companyLogo} alt="companyLogo" />
+                <img
+                  src={job.companyLogo}
+                  height="100px"
+                  width="100px"
+                  alt="company logo"
+                />
                 <br />
                 <h4 style={{ fontFamily: "Raleway" }}>{job.companyTagLine}</h4>
               </div>
@@ -110,7 +116,7 @@ export default function JobModal({ open, job, handleClose, email }) {
 
               <h4 style={{ fontFamily: "Raleway" }}>Job Salary</h4>
               <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobSalary}
+                ${job.jobSalary}
               </p>
 
               <h4 style={{ fontFamily: "Raleway" }}>Job Type</h4>
@@ -120,7 +126,9 @@ export default function JobModal({ open, job, handleClose, email }) {
 
               <h4 style={{ fontFamily: "Raleway" }}>Job Privacy Policy</h4>
               <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobPrivacyPolicy}
+                <a href={job.jobPrivacyPolicy} target="_blank" rel="noreferrer">
+                  {job.jobPrivacyPolicy}
+                </a>
               </p>
 
               {uploadingProgress ? (

@@ -55,7 +55,7 @@ export const JobList = (props) => {
         <div className="row">
           {jobData
             ? jobData.map((d, i) => (
-                <div key={`${d.jobId}-${i}`} className="col-xs-6 col-md-3">
+                <div key={`${d.jobId}-${i}`} className="col-md-4">
                   {" "}
                   <JobCard job={d} email={props.email} />
                 </div>
@@ -69,9 +69,9 @@ export const JobList = (props) => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>ApplicationId</TableCell>
-                <TableCell>JobId</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell sx={{ fontSize: 15 }}>ApplicationId</TableCell>
+                <TableCell sx={{ fontSize: 15 }}>JobId</TableCell>
+                <TableCell sx={{ fontSize: 15 }}>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -80,10 +80,15 @@ export const JobList = (props) => {
                   key={applicantData.applicationId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell>{applicantData.applicationId}</TableCell>
-                  <TableCell>{applicantData.jobId}</TableCell>
-
-                  <TableCell>{applicantData.status}</TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
+                    {applicantData.applicationId}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
+                    {applicantData.jobId}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
+                    {applicantData.status}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

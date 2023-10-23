@@ -66,6 +66,7 @@ export default function PostJob({
         setUploadingProgress(false);
         alert("Congrats! Your have posted a job");
         handleUploadClose();
+        window.location.reload(true);
       });
   };
 

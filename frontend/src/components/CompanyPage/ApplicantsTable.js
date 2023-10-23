@@ -86,9 +86,9 @@ export default function ApplicantsTable({ job, email }) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ApplicationId</TableCell>
-              <TableCell>CandidateEmail</TableCell>
-              <TableCell>Candidate Profile</TableCell>
+              <TableCell sx={{ fontSize: 15 }}>ApplicationId</TableCell>
+              <TableCell sx={{ fontSize: 15 }}>CandidateEmail</TableCell>
+              <TableCell sx={{ fontSize: 15 }}>Candidate Profile</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -98,9 +98,13 @@ export default function ApplicantsTable({ job, email }) {
                   key={applicant.applicationId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell>{applicant.applicationId}</TableCell>
-                  <TableCell>{applicant.candidateEmail}</TableCell>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
+                    {applicant.applicationId}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
+                    {applicant.candidateEmail}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: 15 }}>
                     <Button
                       variant="contained"
                       color="primary"
@@ -131,34 +135,6 @@ export default function ApplicantsTable({ job, email }) {
         profile={profile}
         handleClose={closeTheProfileModal}
       />
-
-      {/* <Card sx={{ maxWidth: 345 }} onClick={openTheJobModal}>
-        <CardHeader title={job.companyName} subheader={job.jobTitle} />
-        <CardMedia
-          component="img"
-          height="194"
-          image={job.companyLogo}
-          alt="Paella dish"
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {job.companyTagLine}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">{job.jobType}</IconButton>|
-          <IconButton aria-label="add to favorites">
-            {job.jobLocation}
-          </IconButton>
-          |<IconButton aria-label="share">${job.jobSalary}</IconButton>
-        </CardActions>
-      </Card>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-       */}
     </div>
   );
 }

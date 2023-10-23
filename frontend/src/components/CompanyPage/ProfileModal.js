@@ -38,6 +38,7 @@ export default function ProfileModal({
       .then((data) => {
         alert("We have informed the candidate about the result");
         handleClose();
+        window.location.reload(true);
       });
   };
 
@@ -98,69 +99,6 @@ export default function ProfileModal({
                   Reject
                 </Button>
               </div>
-              {/* <br />
-                <img src={job.companyLogo} />
-                <br />
-                <h4 style={{ fontFamily: "Raleway" }}>{job.companyTagLine}</h4> */}
-
-              {/* <h4 style={{ fontFamily: "Raleway" }}>About Us</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.companyDescription}
-              </p>
-              <h4 style={{ fontFamily: "Raleway" }}>Website</h4>
-              
-              <h4 style={{ fontFamily: "Raleway" }}>Job Title</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobTitle}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Role</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobRole}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Responsibilities</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobResponsibilities}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Requirements</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobRequirements}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Benefits</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobBenefits}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Location</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobLocation}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Salary</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobSalary}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Type</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobType}
-              </p>
-
-              <h4 style={{ fontFamily: "Raleway" }}>Job Privacy Policy</h4>
-              <p style={{ fontFamily: "Raleway", fontSize: 13 }}>
-                {job.jobPrivacyPolicy}
-              </p>
-
-              
-
-              {uploadingProgress ? (
-                <CircularProgress />
-              ) : (
-                
-              )} */}
             </Box>
           </DialogContent>
         </Dialog>

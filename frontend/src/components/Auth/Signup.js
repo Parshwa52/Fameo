@@ -33,6 +33,7 @@ export default function SignUp({ open, handleSignUpClose, storage }) {
   const [uploadingProgress, setUploadingProgress] = React.useState(false);
   const [profile, setProfile] = React.useState("");
 
+  //candidate sign up data
   const [fname, setFname] = React.useState("");
   const [lname, setLname] = React.useState("");
   const [linkedinLink, setLinkedinLink] = React.useState("");
@@ -40,6 +41,7 @@ export default function SignUp({ open, handleSignUpClose, storage }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  //company sign up data
   const [companyName, setCompanyName] = React.useState("");
   const [tagLine, setTagLine] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -82,7 +84,6 @@ export default function SignUp({ open, handleSignUpClose, storage }) {
           email.toString(),
           resume
         );
-        console.log({ resume_url });
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -148,7 +149,6 @@ export default function SignUp({ open, handleSignUpClose, storage }) {
           companyEmail.toString(),
           logo
         );
-        console.log({ logo_url });
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -184,7 +184,11 @@ export default function SignUp({ open, handleSignUpClose, storage }) {
               sessionStorage.setItem("Auth Token", token);
               handleReset();
               navigate("/", {
-                state: { authToken: token, type: "company" },
+                state: {
+                  authToken: token,
+                  type: "company",
+                  companyData: JSON.parse(reqBody),
+                },
               });
             });
           });
